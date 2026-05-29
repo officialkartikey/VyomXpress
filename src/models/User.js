@@ -25,10 +25,16 @@ module.exports = (sequelize) => {
         },
       },
 
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+    password: {
+  type: DataTypes.STRING,
+  allowNull: false,
+  validate: {
+    is: {
+      args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+      msg: "Password must contain uppercase, lowercase, number and special character",
+    },
+  },
+},
     },
     {
       tableName: "users",
