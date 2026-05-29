@@ -15,8 +15,12 @@ const signup = async (req, res, next) => {
       },
     });
   } catch (error) {
-    next(error);
-  }
+  console.log(error);
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+}
 };
 
 const login = async (req, res, next) => {

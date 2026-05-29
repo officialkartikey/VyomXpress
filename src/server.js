@@ -1,13 +1,22 @@
 const app = require("./app");
 const env = require("./config/env");
 const { connectDB } = require("./config/db");
+const db = require("./models");
 
 const startServer = async () => {
-  await connectDB();
+  try {
+    await connectDB();
 
-  app.listen(env.PORT, () => {
-    console.log(`🚀 Server running on port ${env.PORT}`);
-  });
+    await db.sequelize.sync({ alter: true });
+
+    console.log(" Models Synced");
+
+    app.listen(env.PORT, () => {
+      console.log(` Server running on port ${env.PORT}`);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 startServer();
