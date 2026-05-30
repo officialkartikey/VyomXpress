@@ -279,18 +279,6 @@ logs/
 
 ---
 
-## 📖 Swagger Documentation
-
-Available at:
-
-```text
-/api-docs
-```
-
-Provides interactive API testing and documentation.
-
----
-
 ## 🚀 Deployment
 
 Backend deployed on Render.
