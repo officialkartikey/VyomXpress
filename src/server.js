@@ -1,3 +1,4 @@
+require("./discord/index");
 const app = require("./app");
 const env = require("./config/env");
 const { connectDB } = require("./config/db");
