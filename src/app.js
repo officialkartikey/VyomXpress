@@ -1,10 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-
+const errorMiddleware =require("./middleware/error.middleware");
+const rateLimiter =require("./middleware/rateLimiter");
 const routes = require("./routes");
 
+
+
 const app = express();
+
+app.use(helmet());
+app.use(rateLimiter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,5 +26,7 @@ app.get("/", (req, res) => {
     message: "VyomXpress Backend Running",
   });
 });
+
+app.use(errorMiddleware);
 
 module.exports = app;
