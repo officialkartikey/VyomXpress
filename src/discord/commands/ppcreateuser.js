@@ -33,7 +33,7 @@ module.exports = {
     });
 
     await interaction.reply({
-      content: `✅ User created: ${user.username}`,
+      content: ` User created: ${user.username}`,
     });
   },
 };

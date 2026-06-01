@@ -21,7 +21,7 @@ module.exports = {
       });
 
     await interaction.reply({
-      content: `✅ Service created: ${service.name}`,
+      content: ` Service created: ${service.name}`,
     });
   },
 };

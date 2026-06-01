@@ -67,7 +67,7 @@ const rest = new REST({
       { body: commands }
     );
 
-    console.log("✅ Commands Registered");
+    console.log(" Commands Registered");
   } catch (error) {
     console.error(error);
   }
