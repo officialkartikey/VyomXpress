@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
+      role: {
+  type: DataTypes.ENUM("admin", "user"),
+  defaultValue: "user"
+},
 
     password: {
   type: DataTypes.STRING,

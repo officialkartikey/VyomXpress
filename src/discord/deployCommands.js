@@ -18,11 +18,11 @@ const commands = [
         .setRequired(true)
     )
     .addStringOption(option =>
-  option
-    .setName("password")
-    .setDescription("Password")
-    .setRequired(true)
-),
+      option
+        .setName("password")
+        .setDescription("Password")
+        .setRequired(true)
+    ),
 
   new SlashCommandBuilder()
     .setName("ppcreateservice")
@@ -55,6 +55,28 @@ const commands = [
         .setDescription("Username")
         .setRequired(true)
     ),
+
+  new SlashCommandBuilder()
+    .setName("ppchangepassword")
+    .setDescription("Change user password")
+    .addStringOption(option =>
+      option
+        .setName("email")
+        .setDescription("User Email")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option
+        .setName("oldpassword")
+        .setDescription("Old Password")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option
+        .setName("newpassword")
+        .setDescription("New Password")
+        .setRequired(true)
+    ),
 ].map(command => command.toJSON());
 
 const rest = new REST({
@@ -73,7 +95,7 @@ const rest = new REST({
       { body: commands }
     );
 
-    console.log(" Commands Registered");
+    console.log("✅ Commands Registered");
   } catch (error) {
     console.error(error);
   }
