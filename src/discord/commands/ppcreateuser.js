@@ -8,6 +8,9 @@ module.exports = {
 
     const email =
       interaction.options.getString("email");
+       
+      const password=
+      interaction.options.getString("password");
 
     const existingUser =
       await db.User.findOne({
@@ -21,7 +24,7 @@ module.exports = {
       });
     }
 
-    const password = "Password@123";
+    // const password = "Password@123";
 
     const hashedPassword =
       await bcrypt.hash(password, 10);
@@ -29,7 +32,7 @@ module.exports = {
     const user = await db.User.create({
       username,
       email,
-      password: hashedPassword,
+      password
     });
 
     await interaction.reply({
