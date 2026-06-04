@@ -74,7 +74,7 @@ const execute = async (
         password:
           hashedPassword,
         role: "user",
-      });
+      }) as any;
 
     await interaction.editReply(
       `✅ User created: ${user.username}`

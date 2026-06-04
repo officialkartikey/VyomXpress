@@ -33,10 +33,10 @@ const execute = async (
         true
       );
 
-    const user =
-      await db.User.findOne({
-        where: { email },
-      });
+   const user =
+  await db.User.findOne({
+    where: { email },
+  }) as any;
 
     if (!user) {
 

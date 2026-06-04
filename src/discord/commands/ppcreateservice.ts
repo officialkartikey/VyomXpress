@@ -29,11 +29,11 @@ const execute = async (
       );
 
     const service =
-      await db.Service.create({
-        name,
-        description,
-        price,
-      });
+  await db.Service.create({
+    name,
+    description,
+    price,
+  }) as any;
 
     await interaction.reply({
       content:

@@ -19,12 +19,10 @@ const signup = async (
         "User registered successfully",
       token: result.token,
       user: {
-        id: result.user.id,
-        username:
-          result.user.username,
-        email:
-          result.user.email,
-      },
+  id: (result.user as any).id,
+  username: (result.user as any).username,
+  email: (result.user as any).email,
+},
     });
 
   } catch (error) {
@@ -49,13 +47,11 @@ const login = async (
       success: true,
       message: "Login successful",
       token: result.token,
-      user: {
-        id: result.user.id,
-        username:
-          result.user.username,
-        email:
-          result.user.email,
-      },
+    user: {
+  id: (result.user as any).id,
+  username: (result.user as any).username,
+  email: (result.user as any).email,
+},
     });
 
   } catch (error) {

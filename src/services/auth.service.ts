@@ -31,7 +31,6 @@ const signup = async ({
     });
 
   if (existingUser) {
-
     logger.warn(
       `Duplicate username attempt: ${username}`
     );
@@ -48,7 +47,6 @@ const signup = async ({
     });
 
   if (existingEmail) {
-
     logger.warn(
       `Duplicate email attempt: ${email}`
     );
@@ -60,18 +58,14 @@ const signup = async ({
   }
 
   const hashedPassword =
-    await bcrypt.hash(
-      password,
-      10
-    );
+    await bcrypt.hash(password, 10);
 
   const user =
     await db.User.create({
       username,
       email,
-      password:
-        hashedPassword,
-    });
+      password: hashedPassword,
+    }) as any;
 
   logger.info(
     `User created successfully: ${username}`
@@ -79,7 +73,8 @@ const signup = async ({
 
   const token =
     generateToken(
-      user.id
+      user.id,
+      user.role
     );
 
   return {
@@ -96,10 +91,9 @@ const login = async ({
   const user =
     await db.User.findOne({
       where: { email },
-    });
+    }) as any;
 
   if (!user) {
-
     logger.warn(
       `Login failed: ${email}`
     );
@@ -117,7 +111,6 @@ const login = async ({
     );
 
   if (!isMatch) {
-
     logger.warn(
       `Wrong password attempt: ${email}`
     );
@@ -134,7 +127,8 @@ const login = async ({
 
   const token =
     generateToken(
-      user.id
+      user.id,
+      user.role
     );
 
   return {

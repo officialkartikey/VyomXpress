@@ -19,7 +19,7 @@ const execute = async (
     const user =
       await db.User.findOne({
         where: { username },
-      });
+      }) as any;
 
     if (!user) {
 
