@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const db = require("../../models");
+
 const {
   adminSessions,
 } = require("../sessions");
@@ -13,21 +14,6 @@ module.exports = {
 
     try {
 
-  if (
-  !adminSessions.has(
-    interaction.user.id
-  )
-) {
-  return interaction.editReply(
-    "❌ Please login first using /pplogin"
-  );
-}
-
-      const username =
-        interaction.options.getString(
-          "username"
-        );
-
       const email =
         interaction.options.getString(
           "email"
@@ -38,34 +24,42 @@ module.exports = {
           "password"
         );
 
-      const existingUser =
+      const user =
         await db.User.findOne({
-          where: { username },
+          where: { email },
         });
 
-      if (existingUser) {
+      if (!user) {
         return interaction.editReply(
-          "❌ User already exists."
+          "❌ Invalid credentials."
         );
       }
 
-      const hashedPassword =
-        await bcrypt.hash(
+      const isMatch =
+        await bcrypt.compare(
           password,
-          10
+          user.password
         );
 
-      const user =
-        await db.User.create({
-          username,
-          email,
-          password:
-            hashedPassword,
-          role: "user",
-        });
+      if (!isMatch) {
+        return interaction.editReply(
+          "❌ Invalid credentials."
+        );
+      }
+
+      if (user.role !== "admin") {
+        return interaction.editReply(
+          "❌ Admin access required."
+        );
+      }
+
+      adminSessions.set(
+        interaction.user.id,
+        user.id
+      );
 
       return interaction.editReply(
-        `✅ User created: ${user.username}`
+        "✅ Admin logged in successfully."
       );
 
     } catch (error) {

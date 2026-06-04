@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 module.exports = {
   PORT: process.env.PORT,
 
@@ -14,4 +12,7 @@ module.exports = {
   DISCORD_TOKEN: process.env.DISCORD_TOKEN,
   CLIENT_ID: process.env.CLIENT_ID,
   GUILD_ID: process.env.GUILD_ID,
+
+  ADMIN_DISCORD_ID:
+    process.env.ADMIN_DISCORD_ID,
 };

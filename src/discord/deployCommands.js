@@ -77,6 +77,28 @@ const commands = [
         .setDescription("New Password")
         .setRequired(true)
     ),
+    new SlashCommandBuilder()
+  .setName("pplogin")
+  .setDescription(
+    "Admin Login"
+  )
+  .addStringOption(option =>
+    option
+      .setName("email")
+      .setDescription("Email")
+      .setRequired(true)
+  )
+  .addStringOption(option =>
+    option
+      .setName("password")
+      .setDescription("Password")
+      .setRequired(true)
+  ),
+  new SlashCommandBuilder()
+  .setName("pplogout")
+  .setDescription(
+    "Admin Logout"
+  ),
 ].map(command => command.toJSON());
 
 const rest = new REST({

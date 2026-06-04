@@ -4,6 +4,9 @@ const createUser = require("./commands/ppcreateuser");
 const createService = require("./commands/ppcreateservice");
 const getUser = require("./commands/ppgetuser");
 const changePassword = require("./commands/ppchangepassword");
+const login = require("./commands/pplogin");
+const logout = require("./commands/pplogout");
+
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
@@ -25,6 +28,17 @@ client.on("interactionCreate", async (interaction) => {
       case "ppchangepassword":
         await changePassword.execute(interaction);
         break;
+        case "pplogin":
+  await login.execute(
+    interaction
+  );
+  break;
+
+case "pplogout":
+  await logout.execute(
+    interaction
+  );
+  break;
 
       default:
         await interaction.reply({
