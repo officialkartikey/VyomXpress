@@ -7,6 +7,9 @@ Production-grade backend application built using Node.js, Express.js, MySQL, Seq
 **API URL:**
 [https://vyomxpress-vqej.onrender.com]
 
+**API URL(For typescript):**
+[[https://vyomxpress-vqej.onrender.com](https://vyomxpress-1.onrender.com)]
+
 ---
 
 ## 📌 Features
