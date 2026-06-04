@@ -16,7 +16,13 @@ const commands = [
         .setName("email")
         .setDescription("Email")
         .setRequired(true)
-    ),
+    )
+    .addStringOption(option =>
+  option
+    .setName("password")
+    .setDescription("Password")
+    .setRequired(true)
+),
 
   new SlashCommandBuilder()
     .setName("ppcreateservice")

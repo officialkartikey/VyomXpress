@@ -32,7 +32,7 @@ module.exports = {
     const user = await db.User.create({
       username,
       email,
-      password
+      password :hashedPassword ,
     });
 
     await interaction.reply({
